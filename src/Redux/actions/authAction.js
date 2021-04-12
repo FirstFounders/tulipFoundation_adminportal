@@ -4,7 +4,7 @@ import { LoginAuth } from '../constant';
 const userData = [
   {
     id: 1,
-    email: 'admin@tulipfoundation.com',
+    email: 'admin@tulipfoundation.org',
     password: 'admin101',
     token: 'gshwyjkskjuhsheuejkjkj',
   },
