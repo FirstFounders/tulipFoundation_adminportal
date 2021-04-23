@@ -14,7 +14,7 @@ export default function Input({
 }) {
   return (
     <div>
-      <Form.Group as={Col} controlId='formGridEmail'>
+      <Form.Group as={Col} controlId={name}>
         <Form.Label>{text}</Form.Label>
         <Form.Control
           type={type}

@@ -62,7 +62,7 @@ function Login({ loginAction, token }) {
     }
   };
 
-  console.log(token);
+  // console.log(token);
 
   if (token.authenticate) {
     return <Redirect to='/' />;

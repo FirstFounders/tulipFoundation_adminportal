@@ -1,4 +1,7 @@
 import { LoginAuth } from '../constant';
+import bcrypt from 'bcryptjs';
+var salt = bcrypt.genSaltSync(10);
+
 //import axios from '../helpers/axios';
 
 const userData = [
@@ -34,7 +37,10 @@ export const loginAction = (user) => {
 
     try {
       if (email === userData[0].email && password === userData[0].password) {
-        localStorage.setItem('token', userData[0].token);
+        var hash = bcrypt.hashSync(userData[0].token, salt);
+        // var tokenhash = bcrypt.hashSync('token', salt);
+
+        localStorage.setItem('token', hash);
         localStorage.setItem('user', JSON.stringify(userData[0]));
         dispatch(loginRequestSuccess(userData[0]));
       } else {
@@ -61,10 +67,10 @@ export const isUserLoggedIn = () => {
     dispatch(loginRequest());
     const token = localStorage.getItem('token');
     if (token) {
-      const user = JSON.parse(localStorage.getItem('user'));
+      // const user = JSON.parse(localStorage.getItem('user'));
       const data = {
         token,
-        user,
+        // user,
       };
       dispatch(loginRequestSuccess(data));
     }

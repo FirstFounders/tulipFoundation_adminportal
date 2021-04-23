@@ -28,7 +28,7 @@ export const PartnerFormAction = () => {
     try {
       const res = await axios.get('partnerForm');
       if (res.status === 200) {
-        console.log(res.data);
+        // console.log(res.data);
         // const report = {
         //   type: 'message',
         //   message: res.data.message,

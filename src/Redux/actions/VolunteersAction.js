@@ -28,7 +28,7 @@ export const VolunteersAction = () => {
     try {
       const res = await axios.get('volunteers');
       if (res.status === 200) {
-        console.log(res.data);
+        // console.log(res.data);
         const report = {
           type: 'message',
           message: res.data.message,
