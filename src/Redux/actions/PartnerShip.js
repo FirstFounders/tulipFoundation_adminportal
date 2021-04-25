@@ -72,6 +72,9 @@ export const GetPartnershipAction = () => {
         //   message: res.data.message,
         // };
         dispatch(GetPartnershipSuccess(res.data.data));
+        // setTimeout(() => {
+        //   dispatch(GetPartnershipSuccess([]));
+        // }, 7000);
         // return report;
       }
     } catch (error) {

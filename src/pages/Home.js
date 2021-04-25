@@ -156,8 +156,8 @@ export default function Home() {
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{Partner.title}</td>
-                  <td>{Partner.brandLink && Partner.brandLink['company']}</td>
-                  <td>{Partner.brandLink && Partner.brandLink['url']}</td>
+                  <td>{Partner.brandLink?.company}</td>
+                  <td>{Partner.brandLink?.url}</td>
                   <td>{Partner.article}</td>
                   {/* <td>{Partner.pictures}</td> */}
                   {/* <td>{consultation.message}</td>
