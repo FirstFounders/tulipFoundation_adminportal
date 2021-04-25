@@ -6,6 +6,7 @@ import Consultations from '../reducers/ConsultationsReducer';
 import Event from '../reducers/EventReducer';
 import Blog from '../reducers/BlogReducer';
 import Team from '../reducers/TeamReducer';
+import Partnership from '../reducers/PartnershipReducer';
 
 //delete later
 import summit from '../reducers/summitReducer';
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   Event: Event,
   Blog: Blog,
   Team: Team,
+  Partnership: Partnership,
 });
 
 export default rootReducer;

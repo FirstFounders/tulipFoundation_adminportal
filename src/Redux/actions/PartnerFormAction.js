@@ -38,7 +38,7 @@ export const PartnerFormAction = () => {
       }
     } catch (error) {
       if (error.response) {
-        console.log(error.response.message);
+        // console.log(error.response.message);
         dispatch(PartnerFormFailed());
       }
     }

@@ -8,6 +8,8 @@ export default function Home() {
   const Volunteers = useSelector((state) => state.Volunteers);
   const PartnerForm = useSelector((state) => state.PartnerForm);
   const Consultations = useSelector((state) => state.Consultations);
+  const Partnership = useSelector((state) => state.Partnership);
+
   // console.log(Consultations);
   // // console.log(PartnerForm);
   // //const
@@ -128,6 +130,44 @@ export default function Home() {
               Consultations.Consultations.length < 1 ? (
                 <tr>
                   <td>No Applicant Yet</td>
+                </tr>
+              ) : null}
+            </tbody>
+          </Table>
+        </div>
+
+        <div className='container'>
+          <div className='mt-5 mb-2'>
+            <h1>Partnership Project</h1>
+          </div>
+          <Table responsive='xl'>
+            <thead className='container'>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Company Name</th>
+                <th>Company Link</th>
+                <th>Company Article</th>
+                <th>Picture</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Partnership.Partnership.map((Partner, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{Partner.title}</td>
+                  <td>{Partner.brandLink && Partner.brandLink['company']}</td>
+                  <td>{Partner.brandLink && Partner.brandLink['url']}</td>
+                  <td>{Partner.article}</td>
+                  {/* <td>{Partner.pictures}</td> */}
+                  {/* <td>{consultation.message}</td>
+                  <td>{consultation.option}</td>
+                  <td>{consultation.program}</td> */}
+                </tr>
+              ))}
+              {!Partnership.loading && Partnership.Partnership.length < 1 ? (
+                <tr>
+                  <td>No Partnership Yet</td>
                 </tr>
               ) : null}
             </tbody>

@@ -8,6 +8,7 @@ import {
   VolunteersAction,
   PartnerFormAction,
   ConsultationsAction,
+  GetPartnershipAction,
 } from './Redux/actions';
 
 //routes
@@ -26,6 +27,7 @@ function App() {
       dispatch(VolunteersAction());
       dispatch(PartnerFormAction());
       dispatch(ConsultationsAction());
+      dispatch(GetPartnershipAction());
       // dispatch(getPartnerAction());
       // dispatch(VolunteersAction());
       // dispatch(SummitEventAction());

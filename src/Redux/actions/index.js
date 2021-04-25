@@ -7,3 +7,4 @@ export * from '../actions/EventAction';
 export * from '../actions/BlogAction';
 export * from '../actions/TeamAction';
 export * from '../actions/ProjectAction';
+export * from '../actions/PartnerShip';

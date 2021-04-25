@@ -14,6 +14,7 @@ import { FaHome, FaBlog } from 'react-icons/fa';
 import { MdEvent } from 'react-icons/md';
 import { RiTeamFill } from 'react-icons/ri';
 import { AiOutlineFundProjectionScreen } from 'react-icons/ai';
+import { GiThreeFriends } from 'react-icons/gi';
 
 import Home from '../../pages/Home';
 import Events from '../../pages/Events';
@@ -22,6 +23,7 @@ import Teams from '../../pages/Teams';
 import Projects from '../../pages/Projects';
 //import Error from '../../pages/Error';
 import Login from '../../pages/Login';
+import Partnership from '../../pages/Partnership';
 
 export const routes = [
   {
@@ -53,6 +55,12 @@ export const routes = [
     component: Projects,
     name: 'Projects',
     icon: <AiOutlineFundProjectionScreen />,
+  },
+  {
+    path: '/partnership',
+    component: Partnership,
+    name: 'Partnership',
+    icon: <GiThreeFriends />,
   },
 ];
 

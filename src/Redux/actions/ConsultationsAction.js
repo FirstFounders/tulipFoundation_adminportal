@@ -38,7 +38,7 @@ export const ConsultationsAction = () => {
       }
     } catch (error) {
       if (error.response) {
-        console.log(error.response);
+        // console.log(error.response);
         dispatch(ConsultationsFailed());
       }
     }

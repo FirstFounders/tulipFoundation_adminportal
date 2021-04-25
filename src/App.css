@@ -54,10 +54,11 @@ ul li a {
   height: 100%;
 }
 .sidebar {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-flow: column;
   height: 118%;
+  max-width: 254px;
   width: 100%;
   padding: 32px 33px;
   /* border: 1px solid black; */
