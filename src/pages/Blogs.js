@@ -48,33 +48,40 @@ export default function Blogs() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowAlert(true);
-    if (!author || !title || !article || pictures.length === 0) {
-      setErrorMessage('All Field are Mandatory');
-      setInterval(() => {
-        setErrorMessage('');
-      }, 5000);
-    } else {
-      const form = new FormData();
-      form.append('author', author);
-      form.append('title', title);
-      form.append('article', article);
-      form.append('picture', pictures);
+    // if (!author || !title || !article || pictures.length === 0) {
+    //   setErrorMessage('All Field are Mandatory');
+    //   setInterval(() => {
+    //     setErrorMessage('');
+    //   }, 5000);
+    // } else {
+    const form = new FormData();
+    form.append('author', author);
+    form.append('title', title);
+    form.append('article', article);
+    form.append('picture', pictures);
 
-      dispatch(BlogAction(form)).then((data) => {
-        //console.log(data);
-        if (data && data.type === 'message') {
-          setReportMessage(data.message);
-          setInterval(() => {
-            setErrorMessage('');
-            setReportMessage('');
-          }, 4000);
-        }
+    dispatch(BlogAction(form)).then((data) => {
+      //console.log(data);
+      if (data && data.type === 'message') {
+        setReportMessage(data.message);
+        setInterval(() => {
+          setErrorMessage('');
+          setReportMessage('');
+        }, 4000);
         setAuthor('');
         setTitle('');
         setArticle('');
         setPictures([]);
-      });
-    }
+      }
+      if (data && data.type === 'error') {
+        setErrorMessage(data.errorMessage);
+        setInterval(() => {
+          setErrorMessage('');
+          setReportMessage('');
+        }, 4000);
+      }
+    });
+    // }
   };
   return (
     <div>

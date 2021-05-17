@@ -54,48 +54,51 @@ export default function Events() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowAlert(true);
-    if (!title || !article || pictures.length === 0) {
-      setErrorMessage('All Field are Mandatory');
-      setInterval(() => {
-        setErrorMessage('');
-      }, 5000);
-    } else {
-      if (article.length < 20) {
-        setErrorMessage('Article must be 20 length long');
+    // if (!title || !article || pictures.length === 0) {
+    //   setErrorMessage('All Field are Mandatory');cons
+    //   setInterval(() => {
+    //     setErrorMessage('');
+    //   }, 5000);
+    // } else {
+    // if (article.length < 20) {
+    //   setErrorMessage('Article must be 20 length long');
+    //   setInterval(() => {
+    //     setErrorMessage('');
+    //   }, 5000);
+    // } else {
+
+    const form = new FormData();
+    // form.append('author', author);
+    form.append('title', title);
+    form.append('article', article);
+    for (let pic of pictures) {
+      form.append('picture[]', pic);
+    }
+    console.log(title, article, pictures);
+    dispatch(EventAction(form)).then((data) => {
+      ///console.log(data);
+      if (data?.type === 'message') {
+        setReportMessage(data.message);
         setInterval(() => {
           setErrorMessage('');
-        }, 5000);
-      } else {
-        const form = new FormData();
-        // form.append('author', author);
-        form.append('title', title);
-        form.append('article', article);
-        for (let pic of pictures) {
-          form.append('picture[]', pic);
-        }
-        console.log(title, article, pictures);
-        dispatch(EventAction(form)).then((data) => {
-          // console.log(data);
-          if (data && data.type === 'message') {
-            setReportMessage(data.message);
-            setInterval(() => {
-              setErrorMessage('');
-              setReportMessage('');
-              setTitle('');
-              setArticle('');
-              setPictures([]);
-            }, 4000);
-          } else if (data && data.type === 'error') {
-            setErrorMessage(data.message);
-            setInterval(() => {
-              setErrorMessage('');
-              setReportMessage('');
-            }, 4000);
-          }
-        });
+          setReportMessage('');
+          setTitle('');
+          setArticle('');
+          setPictures([]);
+        }, 4000);
       }
-    }
+      if (data?.type === 'error') {
+        // console.log(data.errorMessage);
+        setErrorMessage(data.errorMessage);
+        setInterval(() => {
+          setErrorMessage('');
+          setReportMessage('');
+        }, 4000);
+      }
+    });
   };
+  // }
+  // };
   return (
     <div>
       <Layout side>

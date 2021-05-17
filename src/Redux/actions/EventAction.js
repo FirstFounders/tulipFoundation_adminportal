@@ -41,7 +41,11 @@ export const EventAction = (form) => {
         //console.log(error.response);
         const errorMessage = {
           type: 'error',
-          message: error.response.data.message,
+          errorMessage: Object.values(
+            typeof error.response.data.message === 'string'
+              ? error.response.data.message
+              : Object.values(error.response.data.message)[0][0]
+          ),
         };
 
         dispatch(EventFailed());

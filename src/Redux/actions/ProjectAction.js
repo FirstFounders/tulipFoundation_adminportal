@@ -28,7 +28,7 @@ export const ProjectAction = (form) => {
     try {
       const res = await axios.post('projects', form);
       if (res.status === 200) {
-        console.log(res.data);
+        //console.log(res.data);
         const report = {
           type: 'message',
           message: res.data.message,
@@ -37,12 +37,17 @@ export const ProjectAction = (form) => {
         return report;
       }
     } catch (error) {
+      // console.log(error.response);
       if (error.response) {
         const errorMessage = {
           type: 'error',
-          message: error.response.data.message,
+          errorMessage: Object.values(
+            typeof error.response.data.message === 'string'
+              ? error.response.data.message
+              : Object.values(error.response.data.message)[0][0]
+          ),
         };
-        console.log(error.response);
+
         dispatch(ProjectFailed());
         return errorMessage;
       }

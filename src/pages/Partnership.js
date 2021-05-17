@@ -49,48 +49,44 @@ export default function Partnership() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowAlert(true);
-    if (
-      !companyName ||
-      !companyUrl ||
-      !title ||
-      !article ||
-      pictures.length === 0
-    ) {
-      setErrorMessage('All Field are Mandatory');
-      setInterval(() => {
-        setErrorMessage('');
-      }, 5000);
-    } else {
-      const form = new FormData();
+    // if (!companyName || !companyUrl || !title || !article || !pictures) {
+    //   setErrorMessage('All Field are Mandatory');
+    //   setInterval(() => {
+    //     setErrorMessage('');
+    //   }, 5000);
+    // } else {
+    const form = new FormData();
 
-      form.append('title', title);
-      form.append('article', article);
-      form.append('picture', pictures);
-      form.append('brandLink', { companyName, companyUrl });
-      // form.append('url', companyUrl);
+    let myObj = { company: companyName, url: companyUrl };
+    let myJSON = JSON.stringify(myObj);
+    form.append('title', title);
+    form.append('article', article);
+    form.append('picture', pictures);
+    form.append('brandLink', myJSON);
+    // form.append('url', companyUrl);
 
-      dispatch(PartnershipAction(form)).then((data) => {
-        // console.log(data);
-        if (data && data.type === 'message') {
-          setReportMessage(data.message);
-          setInterval(() => {
-            setErrorMessage('');
-            setReportMessage('');
-          }, 4000);
-        } else if (data && data.type === 'error') {
-          setErrorMessage(data.message);
-          setInterval(() => {
-            setErrorMessage('');
-            setReportMessage('');
-          }, 7000);
-        }
+    dispatch(PartnershipAction(form)).then((data) => {
+      // console.log(data);
+      if (data && data.type === 'message') {
+        setReportMessage(data.message);
+        setInterval(() => {
+          setErrorMessage('');
+          setReportMessage('');
+        }, 4000);
         setCompanyName('');
         setCompanyUrl('');
         setTitle('');
         setArticle('');
         setPictures([]);
-      });
-    }
+      } else if (data && data.type === 'error') {
+        setErrorMessage(data.errorMessage);
+        setInterval(() => {
+          setErrorMessage('');
+          setReportMessage('');
+        }, 7000);
+      }
+    });
+    // }
   };
   return (
     <div>

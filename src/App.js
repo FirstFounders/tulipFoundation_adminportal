@@ -18,11 +18,10 @@ import { useEffect } from 'react';
 
 function App() {
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.token);
-
+  const auth = useSelector((state) => state.token.authenticate);
+  //console.log(auth);
   useEffect(() => {
-    const Auth = auth.authenticate;
-    if (!Auth) {
+    if (!auth) {
       dispatch(isUserLoggedIn());
       dispatch(VolunteersAction());
       dispatch(PartnerFormAction());
@@ -32,7 +31,7 @@ function App() {
       // dispatch(VolunteersAction());
       // dispatch(SummitEventAction());
     }
-  }, [dispatch, auth.authenticate]);
+  }, [dispatch, auth]);
   return (
     <>
       <Switch>

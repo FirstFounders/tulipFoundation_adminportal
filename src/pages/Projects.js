@@ -54,40 +54,40 @@ export default function Projects() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowAlert(true);
-    if (!title || !article || pictures.length === 0) {
-      setErrorMessage('All Field are Mandatory');
-      setInterval(() => {
-        setErrorMessage('');
-      }, 5000);
-    } else {
-      const form = new FormData();
-      // form.append('author', author);
-      form.append('title', title);
-      form.append('article', article);
-      for (let pic of pictures) {
-        form.append('picture[]', pic);
-      }
-
-      dispatch(ProjectAction(form)).then((data) => {
-        // console.log(data);
-        if (data && data.type === 'message') {
-          setReportMessage(data.message);
-          setInterval(() => {
-            setErrorMessage('');
-            setReportMessage('');
-            setTitle('');
-            setArticle('');
-            setPictures([]);
-          }, 4000);
-        } else if (data.type === 'error') {
-          setErrorMessage(data.message);
-          setInterval(() => {
-            setErrorMessage('');
-            setReportMessage('');
-          }, 4000);
-        }
-      });
+    // if (!title || !article || pictures.length === 0) {
+    //   setErrorMessage('All Field are Mandatory');
+    //   setInterval(() => {
+    //     setErrorMessage('');
+    //   }, 5000);
+    // } else {
+    const form = new FormData();
+    // form.append('author', author);
+    form.append('title', title);
+    form.append('article', article);
+    for (let pic of pictures) {
+      form.append('picture[]', pic);
     }
+
+    dispatch(ProjectAction(form)).then((data) => {
+      console.log(data);
+      if (data && data.type === 'message') {
+        setReportMessage(data.message);
+        setInterval(() => {
+          setErrorMessage('');
+          setReportMessage('');
+          setTitle('');
+          setArticle('');
+          setPictures([]);
+        }, 4000);
+      } else if (data.type === 'error') {
+        setErrorMessage(data.errorMessage);
+        setInterval(() => {
+          setErrorMessage('');
+          setReportMessage('');
+        }, 4000);
+      }
+    });
+    // }
   };
   return (
     <div>

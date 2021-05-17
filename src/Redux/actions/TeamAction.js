@@ -27,7 +27,7 @@ export const TeamAction = (form) => {
     try {
       const res = await axios.post('teams', form);
       if (res.status === 200) {
-        console.log(res.data);
+        //console.log(res.data);
         const report = {
           type: 'message',
           message: res.data.message,
@@ -37,8 +37,16 @@ export const TeamAction = (form) => {
       }
     } catch (error) {
       if (error.response) {
-        console.log(error.response);
+        const report = {
+          type: 'error',
+          errorMessage: Object.values(
+            typeof error.response.data.message === 'string'
+              ? error.response.data.message
+              : Object.values(error.response.data.message)[0][0]
+          ),
+        };
         dispatch(teamFailed());
+        return report;
       }
     }
   };

@@ -52,33 +52,40 @@ export default function Teams() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowAlert(true);
-    if (!name || !position || !email || pictures.length === 0) {
-      setErrorMessage('All Field are Mandatory');
-      setInterval(() => {
-        setErrorMessage('');
-      }, 5000);
-    } else {
-      const form = new FormData();
-      form.append('name', name);
-      form.append('position', position);
-      form.append('email', email);
-      form.append('picture', pictures);
+    // if (!name || !position || !email || pictures.length === 0) {
+    //   setErrorMessage('All Field are Mandatory');
+    //   setInterval(() => {
+    //     setErrorMessage('');
+    //   }, 5000);
+    // } else {
+    const form = new FormData();
+    form.append('name', name);
+    form.append('position', position);
+    form.append('email', email);
+    form.append('picture', pictures);
 
-      dispatch(TeamAction(form)).then((data) => {
-        console.log(data);
-        if (data.type === 'message') {
-          setReportMessage(data.message);
-          setInterval(() => {
-            setErrorMessage('');
-            setReportMessage('');
-          }, 4000);
-        }
+    dispatch(TeamAction(form)).then((data) => {
+      // console.log(data);
+      if (data?.type === 'message') {
+        setReportMessage(data.message);
+        setInterval(() => {
+          setErrorMessage('');
+          setReportMessage('');
+        }, 4000);
         setName('');
         setEmail('');
         setPosition('');
         setPictures([]);
-      });
-    }
+      }
+      if (data?.type === 'error') {
+        setErrorMessage(data.errorMessage);
+        setInterval(() => {
+          setErrorMessage('');
+          setReportMessage('');
+        }, 4000);
+      }
+    });
+    // }
   };
   return (
     <div>
